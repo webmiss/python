@@ -1,6 +1,5 @@
-# 
-# 彩票
-# 
+#!/bin/python
+# -*- coding: UTF-8 -*-
 
 from urllib import request
 import gzip
@@ -11,6 +10,9 @@ import json
 from framework.MySQL import MySQL
 # from framework.Email import Email
 
+# 
+# 彩票
+# 
 class Caipiao:
 	# 首页
 	def index(self) :
