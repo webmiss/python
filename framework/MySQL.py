@@ -11,12 +11,37 @@ class MySQL(object):
 	# 构造函数
 	def __init__(self):
 		# 配置文件
-		if config :
-			self.config = config
-			self.__sql=[]
+		self.config = config
+		# SQL
+		self.__sql=[]
 
 	# 查询
 	def find(self,parm=''):
+		sql = self.__select(parm)
+		# 游标
+		cursor=self.__cursor()
+		cursor.execute(sql)
+		return cursor.fetchall()
+
+	# 查询一条
+	def findfirst(self,parm=''):
+		sql = self.__select(parm)
+		# 游标
+		cursor=self.__cursor()
+		cursor.execute(sql)
+		return cursor.fetchone()
+
+	# 返回条数
+	def getRows(self,parm=''):
+		sql = self.__select(parm)
+		# 游标
+		cursor=self.__cursor()
+		cursor.execute(sql)
+		cursor.fetchall()
+		return cursor.rowcount
+
+	# 生成查询条件
+	def __select(self,parm=''):
 		# 表
 		if 'table' in parm.keys() :
 			table = parm['table']
@@ -35,31 +60,7 @@ class MySQL(object):
 			sql += ' ORDER BY '+parm['order']
 		if 'limit' in parm.keys() :
 			sql += ' LIMIT '+parm['limit']
-
-		print(sql)
-
-		sql = 'select * from cqssc'
-		# 游标
-		cursor=self.__cursor()
-		cursor.execute(sql)
-		return cursor.fetchall()
-
-	# 查询一条
-	def findfirst(self,parm=''):
-		sql = 'select * from cqssc'
-		# 游标
-		cursor=self.__cursor()
-		cursor.execute(sql)
-		return cursor.fetchone()
-
-	# 返回条数
-	def getRows(self):
-		sql = 'select * from cqssc'
-		# 游标
-		cursor=self.__cursor()
-		cursor.execute(sql)
-		cursor.fetchall()
-		return cursor.rowcount
+		return sql
 
 	# 添加
 	def add(self,table='',data=''):
