@@ -74,7 +74,7 @@ class Caipiao:
 	# 获取html
 	def __getHtml(self,url):
 		html = request.urlopen(url).read()
-		html = gzip.decompress(html)
+		# html = gzip.decompress(html)
 		html = html.decode('utf-8')
 		return html
 
