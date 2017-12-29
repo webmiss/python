@@ -7,7 +7,7 @@ import sys
 parameter = sys.argv
 del parameter[0]
 # 默认参数
-from app.config import *
+from app.config import config
 param = [config['modules'],config['action'],'','']
 
 # 模块、函数、参数
