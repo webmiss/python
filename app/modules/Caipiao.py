@@ -74,8 +74,11 @@ class Caipiao:
 	# 获取html
 	def __getHtml(self,url):
 		html = request.urlopen(url).read()
-		html = gzip.decompress(html)
-		html = html.decode('utf-8')
+		# 解码
+		try:
+			html = gzip.decompress(html).decode('utf-8')
+		except:
+			html = html.decode('utf-8')
 		return html
 
 	# 开奖号码
