@@ -31,7 +31,7 @@ class Caipiao:
 		num = self.__getNum(html,period)
 		if period=='120' :
 			# Html
-			url = 'http://f.apiplus.cn/cqssc-1.json'
+			url = 'http://f.apiplus.net/cqssc-1.json'
 			html = request.urlopen(url).read()
 			html = html.decode('utf-8')
 			# Num
