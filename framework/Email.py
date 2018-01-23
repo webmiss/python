@@ -13,6 +13,8 @@ class Email:
 	def __init__(self):
 		self.smtp = smtp
 
+	# 发送邮件
+	# parm: {'to':['收件人'], 'subject':'标题', 'content':'内容'}
 	def sendSmtp(self,parm=''):
 		me = self.smtp['alias']+"<"+self.smtp['user']+"@"+self.smtp['postfix']+">"
 		to_list=parm['to']
@@ -24,7 +26,7 @@ class Email:
 		# 发送邮件
 		try:
 			server = smtplib.SMTP()
-			server.connect(self.smtp['host'])
+			server.connect(self.smtp['host'],self.smtp['port'])
 			server.login(self.smtp['user'],self.smtp['passwd'])
 			server.sendmail(me, to_list, msg.as_string())
 			server.close()
